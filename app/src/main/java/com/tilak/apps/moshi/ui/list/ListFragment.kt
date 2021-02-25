@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.tilak.apps.moshi.data.AirlineModel
 import com.tilak.apps.moshi.databinding.ListFragmentBinding
 import com.tilak.apps.moshi.utilities.LogHelper
+import com.tilak.apps.moshi.utilities.SourceType
 
 class ListFragment : Fragment() {
 
@@ -35,7 +36,7 @@ class ListFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(ListViewModel::class.java)
-
+        viewModel.fetchAirlinesList(SourceType.RESOURCE)
         adapterAirlines = AirlinesListAdapter(airlinesList)
         val layoutManager = LinearLayoutManager(activity)
         binding.recyclerviewAirlines.layoutManager = layoutManager
