@@ -3,10 +3,9 @@ package com.tilak.apps.moshi.ui.list
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.NonNull
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 
-import com.tilak.apps.moshi.data.AirlineModel
+import com.tilak.apps.moshi.data.model.AirlineModel
 import com.tilak.apps.moshi.databinding.ItemListAirlineBinding
 import com.tilak.apps.moshi.utilities.LogHelper
 

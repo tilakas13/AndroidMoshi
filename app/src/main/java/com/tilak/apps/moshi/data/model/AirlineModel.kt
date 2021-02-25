@@ -1,4 +1,4 @@
-package com.tilak.apps.moshi.data
+package com.tilak.apps.moshi.data.model
 
 import com.squareup.moshi.Json
 

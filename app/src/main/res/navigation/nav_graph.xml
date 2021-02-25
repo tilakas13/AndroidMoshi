@@ -9,7 +9,7 @@
         android:id="@+id/mainFragment"
         android:name="com.tilak.apps.moshi.ui.main.MainFragment"
         android:label="main_fragment"
-        tools:layout="@layout/main_fragment" >
+        tools:layout="@layout/main_fragment">
         <action
             android:id="@+id/action_mainFragment_to_listFragment"
             app:destination="@id/listFragment" />
@@ -18,5 +18,9 @@
         android:id="@+id/listFragment"
         android:name="com.tilak.apps.moshi.ui.list.ListFragment"
         android:label="list_fragment"
-        tools:layout="@layout/list_fragment" />
+        tools:layout="@layout/list_fragment">
+        <argument
+            android:name="SourceType"
+            app:argType="com.tilak.apps.moshi.utilities.SourceType" />
+    </fragment>
 </navigation>

@@ -9,12 +9,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.tilak.apps.moshi.R
 import com.tilak.apps.moshi.databinding.MainFragmentBinding
+import com.tilak.apps.moshi.utilities.AppConstants
 import com.tilak.apps.moshi.utilities.LogHelper
+import com.tilak.apps.moshi.utilities.SourceType
 
 class MainFragment : Fragment(), View.OnClickListener {
 
     companion object {
-        const val TAG = "MainFragment"
         fun newInstance() = MainFragment()
     }
 
@@ -39,15 +40,21 @@ class MainFragment : Fragment(), View.OnClickListener {
     override fun onClick(view: View?) {
         when (view?.id) {
             R.id.but_load_from_assets -> {
-                LogHelper.logMessage(TAG, "Load data from Assets")
-                findNavController().navigate(R.id.action_mainFragment_to_listFragment)
+                LogHelper.logMessage(AppConstants.TAG_LOGS, "Load data from Assets")
+                val actionSourceType =
+                    MainFragmentDirections.actionMainFragmentToListFragment(SourceType.ASSETS)
+                findNavController().navigate(actionSourceType)
             }
 
             R.id.but_load_from_resource -> {
-                LogHelper.logMessage(TAG, "Load data from resource")
-                findNavController().navigate(R.id.action_mainFragment_to_listFragment)
+                LogHelper.logMessage(AppConstants.TAG_LOGS, "Load data from resource")
+                val actionSourceType =
+                    MainFragmentDirections.actionMainFragmentToListFragment(SourceType.RESOURCE)
+                findNavController().navigate(actionSourceType)
             }
         }
+
+
     }
 
 

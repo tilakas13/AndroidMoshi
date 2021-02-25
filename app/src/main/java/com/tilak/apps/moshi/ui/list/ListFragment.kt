@@ -1,23 +1,25 @@
 package com.tilak.apps.moshi.ui.list
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.tilak.apps.moshi.R
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.tilak.apps.moshi.data.AirlineModel
+import com.tilak.apps.moshi.data.model.AirlineModel
 import com.tilak.apps.moshi.databinding.ListFragmentBinding
+import com.tilak.apps.moshi.utilities.AppConstants
 import com.tilak.apps.moshi.utilities.LogHelper
-import com.tilak.apps.moshi.utilities.SourceType
 
 class ListFragment : Fragment() {
 
+    private val navigationArgs: ListFragmentArgs by navArgs()
+
+
     companion object {
-        var TAG = "ListFragment"
         fun newInstance() = ListFragment()
     }
 
@@ -28,15 +30,22 @@ class ListFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = ListFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        val selectedSourceType = navigationArgs.SourceType
+        LogHelper.logMessage(
+            AppConstants.TAG_LOGS,
+            "Selected source type ->$selectedSourceType"
+        )
+
         viewModel = ViewModelProvider(this).get(ListViewModel::class.java)
-        viewModel.fetchAirlinesList(SourceType.RESOURCE)
+        viewModel.fetchAirlinesList(selectedSourceType)
         adapterAirlines = AirlinesListAdapter(airlinesList)
         val layoutManager = LinearLayoutManager(activity)
         binding.recyclerviewAirlines.layoutManager = layoutManager
@@ -47,7 +56,7 @@ class ListFragment : Fragment() {
                 addUsers(it)
                 notifyDataSetChanged()
             }
-            LogHelper.logMessage(TAG, "Airlines list updated....");
+            LogHelper.logMessage(AppConstants.TAG_LOGS, "Airlines list updated....");
         })
     }
 
