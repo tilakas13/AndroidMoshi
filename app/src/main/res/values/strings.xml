@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Android-Moshi</string>
+    <string name="load_from_assets">Load from Assets</string>
+    <string name="load_from_resource">Load from Resource</string>
+</resources>
